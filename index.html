@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Official - Special Offers on Old & New Cars</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #001f3f 0%, #003087 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo i {
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23001f3f" width="1200" height="600"/><path fill="%23003087" d="M0 300 Q300 0 600 300 T1200 300 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #001f3f;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
+        }
+
+        /* Offers Section */
+        .offers {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #001f3f;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffd700, #ff6b35, #007bff);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .offer-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .discount-badge {
+            background: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .offer-card h3 {
+            font-size: 2rem;
+            color: #001f3f;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: linear-gradient(135deg, #001f3f 0%, #003087 100%);
+            color: white;
+            padding: 100px 0;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #001f3f;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Showrooms Section */
+        .showrooms {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .showroom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showroom-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .showroom-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: #001f3f;
+            color: white;
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #28a745;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-car"></i>
+                BMW Official
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#offers">Special Offers</a></li>
+                <li><a href="#showrooms">Showrooms</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>BMW Special Offers</h1>
+            <p>Up to 40% OFF on Certified Pre-Owned Cars<br>
+            Exclusive Deals on All New BMW Models</p>
+            <a href="#contact" class="cta-button">Get Your Offer Now!</a>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="offers">
+        <h2 class="section-title">Special Offers</h2>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-icon">
+                    <i class="fas fa-car-side" style="color: #ff4757;"></i>
+                </div>
+                <div class="discount-badge">UP TO 40% OFF</div>
+                <h3>Certified Pre-Owned</h3>
+                <p>BMW Approved Used Cars with full warranty. All cars thoroughly inspected and certified by BMW technicians.</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>✓ 24-month unlimited mileage warranty</li>
+                    <li>✓ 360° inspection</li>
+                    <li>✓ Roadside assistance</li>
+                </ul>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-icon">
+                    <i class="fas fa-gift" style="color: #ffd700;"></i>
+                </div>
+                <div class="discount-badge">0% FINANCE</div>
+                <h3>New BMW Models</h3>
+                <p>Latest BMW 3 Series, 5 Series, X Series with unbeatable finance offers and free accessories.</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>✓ Free first service</li>
+                    <li>✓ 5-year service package</li>
+                    <li>✓ Exchange bonus up to ₹2 Lakh</li>
+                </ul>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-icon">
+                    <i class="fas fa-tools" style="color: #007bff;"></i>
+                </div>
+                <div class="discount-badge">EXTRA ₹50,000 OFF</div>
+                <h3>Exchange Bonus</h3>
+                <p>Trade-in your old car and get additional exchange bonus on any new BMW purchase.</p>
+                <ul style="text-align: left; margin-top: 1rem;">
+                    <li>✓ Instant valuation</li>
+                    <li>✓ Best exchange rates</li>
+                    <li>✓ Hassle-free process</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showrooms Section -->
+    <section id="showrooms" class="showrooms">
+        <h2 class="section-title" style="color: #001f3f;">Our Showrooms - All Connected</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">
+            All BMW showrooms are connected to this platform. Fill the form and get connected to your nearest showroom instantly!
+        </p>
+        <div class="showroom-grid">
+            <div class="showroom-card">
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;"></i>
+                <h3>Mumbai</h3>
+                <p>Bandra Kurla Complex</p>
+                <p><strong>Connected Live</strong></p>
+            </div>
+            <div class="showroom-card">
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;"></i>
+                <h3>Delhi</h3>
+                <p>Connaught Place</p>
+                <p><strong>Connected Live</strong></p>
+            </div>
+            <div class="showroom-card">
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;"></i>
+                <h3>Bangalore</h3>
+                <p>Whitefield</p>
+                <p><strong>Connected Live</strong></p>
+            </div>
+            <div class="showroom-card">
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #007bff; margin-bottom: 1rem;"></i>
+                <h3>Chennai</h3>
+                <p>Anna Salai</p>
+                <p><strong>Connected Live</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Get Your Personalized Offer</h2>
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle" style="font-size: 2rem; margin-right: 1rem;"></i>
+                Thank you! Our BMW showroom will contact you within 2 hours.
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Contact Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-city"></i> City *</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Gmail *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send My Offer
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3><i class="fas fa-car"></i> BMW Official</h3>
+            <p>&copy; 2024 BMW. All BMW showrooms connected. Offers valid till stock lasts.</p>
+            <p>Authorized BMW Dealer Network</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const email = document.getElementById('email').value;
+            
+            // Simple validation
+            if (name && phone && city && email) {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').style.display = 'none';
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Here you would typically send data to server
+                console.log('Customer Data:', { name, phone, city, email });
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('contactForm').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
+                    document.getElementById('contactForm').reset();
+                }, 5000);
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 31, 63, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #001f3f 0%, #003087 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
